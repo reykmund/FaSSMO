@@ -461,7 +461,7 @@
                     <div class="w3-center"><br>
                         <!--<span onclick="document.getElementById('rec').style.display='none'" class="w3-button w3-large w3-hover-red w3-display-topright" title="Close">&times;</span>-->
                     </div>
-                    <h2 class="w3-yellow"><b>Faculty Attendance</b></h2>
+                    <h2 class="w3-yellow"><b>Visitor Log</b></h2>
                     <div class="w3-panel">
                     <button class="w3-button w3-yellow w3-hover-red w3-hover-shadow w3-right" onclick="document.getElementById('Vrec').style.display='none'">Back</button>
                     <button class="w3-button w3-green w3-hover-red w3-hover-shadow w3-right w3-margin-right" onclick="document.getElementById('Vrec').style.display='none'; document.getElementById('Vprint').style.display='block'">Print</button></div>
