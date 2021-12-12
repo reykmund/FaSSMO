@@ -251,7 +251,7 @@
                 <strong class="w3-xxlarge">ABOUT</strong><br>
                 </div>
                 <h3 class="w3-padding-32 w3-margin">This website application is made possible as a fulfillment project to the course "Capstone Project", course code: CMPT197
-                under Mr. Elmer Blanco, with the utmost guidance of Mr. Jade Guillen.<br>Created by Kreymund Galacgac, with the help of Hannah Angelica Cac and Junry Rafael Reyes,
+                under Mr. Elmer Blanco, with the utmost guidance of Mr. Christian Jade Guillen.<br>Created by Kreymund Galacgac, with the help of Hannah Angelica Cac and Junry Rafael Reyes,
                 this online attendance system can be of future use as an attendance system for the students and faculty staff of MMSU College of Industrial Technology.
                 This online attendance system can be revised, further expand and add more functionalities.
                 <br><strong>To God Be All The Glory.</strong><br>
