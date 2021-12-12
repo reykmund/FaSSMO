@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../css/w3.css">
+	<link rel="icon" href="../img/fassmo_black.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
     @media only screen and (min-width: 1080px) {body {background-image: url('../img/MMSU_bg.jpg'); background-size: cover; background-repeat:no-repeat;}}
@@ -12,8 +13,8 @@
     <title>Administrator's Dashboard</title>
 </head>
 <body class="w3-responsive w3-content">
-    <a href="http://mmsu.edu.ph"><img class="w3-left w3-margin w3-circle" src="OnlineAttendance/img/mmsu-logo.png" height="40px" width="40px"></a>
-    <a href="http://cit.mmsu.edu.ph"><img class="w3-right w3-margin w3-circle" src="OnlineAttendance/img/cit-logo.png" height="40px" width="45px"></a>
+    <a href="http://mmsu.edu.ph"><img class="w3-left w3-margin w3-circle" src="../img/mmsu-logo.png" height="40px" width="40px"></a>
+    <a href="http://cit.mmsu.edu.ph"><img class="w3-right w3-margin w3-circle" src="../img/cit-logo.png" height="40px" width="45px"></a>
     <h3 class="w3-header w3-center w3-padding w3-serif w3-text-white" style="background-color:#197800; text-shadow:2px 2px 0 #528;"><b>Mariano Marcos State University</b></h3>
 	<div class="w3-panel w3-center w3-round w3-padding w3-margin">
     <nav class="w3-panel w3-text-black w3-tiny">
