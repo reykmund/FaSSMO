@@ -457,7 +457,7 @@
                 </div>
         </div>
         <div id="Vrec" class="w3-modal">
-                <div class="w3-modal-content w3-card-4 w3-animate-top w3-blue w3-round-large" style="max-width:3840px">
+                <div class="w3-modal-content w3-card-4 w3-animate-top w3-gray w3-round-large" style="max-width:3840px">
                     <div class="w3-center"><br>
                         <!--<span onclick="document.getElementById('rec').style.display='none'" class="w3-button w3-large w3-hover-red w3-display-topright" title="Close">&times;</span>-->
                     </div>
