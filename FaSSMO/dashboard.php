@@ -476,7 +476,7 @@
                             </tr>
                             <?php
                             include "OnlineAttendance/connect2db.php";
-                            $sql = "SELECT * FROM visitor_log ORDER BY datein ASC";
+                            $sql = "SELECT * FROM visitor_log ORDER BY datein DESC";
                             $output = mysqli_query($conn,$sql);
                             foreach($output as $row){
                                 echo "<tr class='w3-hover-blue w3-hover-shadow'>
