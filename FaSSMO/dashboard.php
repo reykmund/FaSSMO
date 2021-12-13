@@ -1,5 +1,6 @@
 <?php ob_start(); session_start();
-if (!empty($_SESSION['username'])):header('Location: index.php');
+if (!empty($_SESSION['username'])){echo '';}
+else {header('Location: index.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en">
