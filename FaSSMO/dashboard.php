@@ -1,3 +1,4 @@
+<?php ob_start(); session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +47,7 @@
             </html>";
             ?>
         </span>
-        <a class="w3-button w3-hover-yellow w3-hover-shadow w3-right" href="index.php" onclick="<?php session_start(); unset($_SESSION["username"]); unset($_SESSION["password"]);?>"><i class="material-icons w3-xlarge">backspace</i><br>Log Out</a>
+        <a class="w3-button w3-hover-yellow w3-hover-shadow w3-right" href="index.php" onclick="<?php session_start(); unset($_SESSION["username"]); ?>"><i class="material-icons w3-xlarge">backspace</i><br>Log Out</a>
         <button class="w3-button w3-right w3-hover-blue w3-hover-shadow" onclick="document.getElementById('about').style.display='block'">
         <i class="material-icons w3-xlarge">info</i><br>About</button>
         <div id="about" class="w3-modal">
