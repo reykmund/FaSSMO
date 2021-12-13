@@ -1,5 +1,5 @@
 <?php ob_start(); session_start();
-if (!empty($_SESSION['username']) {echo ("
+if (!empty($_SESSION['username'])):header('Location: index.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -545,4 +545,3 @@ else if(val=='acad')
     
 </script>
 </html>
-<?php ")}; ?>
