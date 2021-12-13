@@ -1,4 +1,6 @@
-<?php ob_start(); session_start();?>
+<?php ob_start(); session_start();
+if (!empty($_SESSION['username']) {echo ('
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -543,3 +545,4 @@ else if(val=='acad')
     
 </script>
 </html>
+<?php ')}; ?>
