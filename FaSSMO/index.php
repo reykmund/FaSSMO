@@ -83,6 +83,7 @@
             $username = "admin";
             $password = sha1("nimda");
             if($_POST['username'] == $username && sha1($_POST['password']) == $password){
+		$_SESSION['username'] = "admin";
                 echo '<h1 class="w3-green"><i class="material-icons w3-xxxlarge w3-center">spellcheck</i><br><b>Login Successful!<br>Proceeding to dashboard...<br><i class="material-icons w3-xxxlarge w3-spin">loop</i></h1>';
                 echo '<audio autoplay><source src="OnlineAttendance/null.wav" type="audio/wav"></audio>';
                 header("refresh:3;url=dashboard.php");
