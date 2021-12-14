@@ -107,7 +107,7 @@
             $password = sha1("nimda");
             if($_POST['username'] == $username && sha1($_POST['password']) == $password){
                 echo '<h1><i class="material-icons w3-xxxlarge w3-center">spellcheck</i><br><b>Login Successful!<br>Proceeding to dashboard...<br><i class="material-icons w3-xxxlarge w3-spin">loop</i></h1>';
-                echo '<audio autoplay><source src="null.wav" type="audio/wav"></audio>';
+                //echo '<audio autoplay><source src="null.wav" type="audio/wav"></audio>';
                 header("refresh:3;url=admin/dashboard.php");
                 //echo '<script>window.location.href="dashboard.php"</script>';
             }
@@ -127,7 +127,7 @@
             $check = $Tvalid->num_rows;
             if($check == 1){
                 echo '<h1><i class="material-icons w3-xxxlarge w3-center">spellcheck</i><br><b>Login Successful!<br>Proceeding to dashboard...<br><i class="material-icons w3-xxxlarge w3-spin">loop</i></b></h1>';
-                echo '<audio autoplay><source src="null.wav" type="audio/wav"></audio>';
+                //echo '<audio autoplay><source src="null.wav" type="audio/wav"></audio>';
                 header("refresh:3;url=admin/Tdashboard.php");}
             else{
                 echo '<h1><i class="material-icons w3-xxxlarge">warning</i><br><b>Login Failed!<br>Incorrect Username and/or Password<br></b>Returning Back...<br><i class="material-icons w3-xxxlarge w3-spin">loop</i></b></h1>';
