@@ -37,7 +37,7 @@
                 $datein = $_POST['datein'];
                 $timein = $_POST['timein'];
                 $pcnum = $_POST['PCNum'];
-                $subj = $_POST['subj'];
+                $subj = strtoupper($_POST['subj']);
                 $teacher = $_POST['teacher'];
                 $room = $_POST['room'];
                 include "connect2db.php";
@@ -127,7 +127,7 @@
             $check = $Tvalid->num_rows;
             if($check == 1){
                 echo '<h1><i class="material-icons w3-xxxlarge w3-center">spellcheck</i><br><b>Login Successful!<br>Proceeding to dashboard...<br><i class="material-icons w3-xxxlarge w3-spin">loop</i></b></h1>';
-                //echo '<audio autoplay><source src="null.wav" type="audio/wav"></audio>';
+                echo '<audio autoplay><source src="null.wav" type="audio/wav"></audio>';
                 header("refresh:3;url=admin/Tdashboard.php");}
             else{
                 echo '<h1><i class="material-icons w3-xxxlarge">warning</i><br><b>Login Failed!<br>Incorrect Username and/or Password<br></b>Returning Back...<br><i class="material-icons w3-xxxlarge w3-spin">loop</i></b></h1>';
@@ -205,34 +205,34 @@
                     <span onclick="document.getElementById('in').style.display='none'; document.getElementById('estudyante').style.display='block'" class="w3-button w3-xlarge w3-hover-red w3-hover-shadow w3-display-topright" title="Close">&times;</span>
                 </div>
                 <h2><b>Time In Form</b></h2>
-                <form class="w3-panel w3-margin w3-padding" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+                <form class="w3-panel w3-margin w3-padding" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                     <input required autofocus autocomplete="off" class="w3-input w3-left w3-round w3-margin-bottom" type="text" name="studID" placeholder="Enter Student Number">
                     <small class="w3-left">Format: 09-123456</small><br><br><br><br>
                     <input hidden type="text" name="datein" value='<?php date_default_timezone_set("Asia/Manila"); echo date('Y-m-d');?>'>
                     <input hidden type="text" name="timein" value='<?php date_default_timezone_set("Asia/Manila"); echo date('h:i:s A');?>'>
                     <input type="number" class="w3-input w3-right w3-margin-top" id="numpc" name="numpc" min="4" style="display:none; max-width:45%" placeholder="Enter PC Number">
                     <select required class="w3-select w3-left w3-margin-top" style="max-width:45%;" name="PCNum" onchange="CheckPC(this.value);">
-                        <option selected disabled>Select PC Number</option>
-                        <option value="with Laptop">with Laptop</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="None">None</option>
-                        <option value="more">More options...</option>
+                        <option selected disabled>Select PC Number
+                        <option value="with Laptop">with Laptop
+                        <option value="1">1
+                        <option value="2">2
+                        <option value="3">3
+                        <option value="None">None
+                        <option value="more">More options...
                     </select><br><br><br>
                     <input type="text" class="w3-input w3-right w3-margin-top" id="Osub" name="Osub" style="display:none; max-width:45%" placeholder="Enter Course Code/Subject">
                     <select required class="w3-select w3-left w3-margin-top" style="max-width:45%;" name="subj" onchange="OtherSub(this.value);">
-                        <option selected disabled>Select Subject</option>
-                        <option value="CMPT123">CMPT123</option>
-                        <option value="CMPT143">CMPT143</option>
-                        <option value="CMPT152">CMPT152</option>
-                        <option value="CMPT153">CMPT153</option>
-                        <option value="CMPT154">CMPT154</option>
-                        <option value="more">Other...</option>
+                        <option selected disabled>Select Subject
+                        <option value="CMPT123">CMPT123
+                        <option value="CMPT143">CMPT143
+                        <option value="CMPT152">CMPT152
+                        <option value="CMPT153">CMPT153
+                        <option value="CMPT154">CMPT154
+                        <option value="more">Other...
                     </select><br><br><br>
                     <input type="text" class="w3-input w3-right w3-margin-bottom" id="Oteacher" name="Oteacher" style="display:none; max-width:45%" autocomplete="off" placeholder="Enter Teacher Name">
                     <select required class="w3-select w3-left w3-margin-bottom" name="teacher" style="max-width:45%;" onchange="AddTeacher(this.value);">
-                        <option selected disabled>Select Teacher</option>
+                        <option selected disabled>Select Teacher
                         <?php
                         include "connect2db.php";
                         $query = "SELECT * FROM teacherscmpt";
@@ -241,9 +241,9 @@
                             echo "<option value='".$row['honorific']." ".$row['firstname']." ".$row['lastname']."'>".$row['honorific']." ".$row['firstname']." ".$row['lastname']."</option>" ;
                         }
                         ?>
-                        <option value="others">Others... please specify</option>
+                        <option value="others">Others... please specify
                     </select><br><br><br>
-			<select class="w3-select w3-right w3-margin-bottom" id="techb" name="tb" style="display:none; max-width: 45%" autocomplete="off">
+                    <select class="w3-select w3-right w3-margin-bottom" id="techb" name="tb" style="display:none; max-width: 45%" autocomplete="off">
                         <option selected disabled>Select Room</option>
                         <option value="TB101">TB101</option>
                         <option value="TB102">TB102</option>
@@ -282,15 +282,14 @@
                         <option value="acad">Academic Building</option>
                         <option value="tech">Technology Building</option>
                     </select>
-                    <!--<input type="text" class="w3-input w3-right w3-margin-bottom" id="Oroom" name="Oroom" style="display:none; max-width:45%" autocomplete="off" placeholder="Enter Room">
+                    <!---<input type="text" class="w3-input w3-right w3-margin-bottom" id="Oroom" name="Oroom" style="display:none; max-width:45%" autocomplete="off" placeholder="Enter Room">
                     <select required class="w3-select w3-left w3-margin-bottom" name="room" style="max-width:45%;" onchange="OtherRoom(this.value);">
-                        <option selected disabled>Select Room Number</option>
-                        <option value="TB201">TB201</option>
-                        <option value="TB202">TB202</option>
-                        <option value="Flexible Learning Hub">Flexible Learning Hub</option>
-                        <option value="other">Other</option>
-                    </select>-->
-<br><br><br>
+                        <option selected disabled>Select Room Number
+                        <option value="TB201">TB201
+                        <option value="TB202">TB202
+                        <option value="Flexible Learning Hub">Flexible Learning Hub
+                        <option value="other">Other
+                    </select>--><br><br><br>
                     <input type="submit" name="intime" value="Time In" class="w3-button w3-orange w3-left w3-round w3-margin-top w3-hover-blue w3-hover-shadow">
                 </form>
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-gray">
@@ -305,10 +304,22 @@
                 </div>
                 <h2><b>Time Out Form</b></h2>
                 <form class="w3-panel w3-margin w3-padding" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-                    <input required autofocus autocomplete="off" class="w3-input w3-left w3-round w3-margin-bottom" type="text" name="studID" placeholder="Enter Student Number">                                                    
+                    <input required autofocus autocomplete="off" class="w3-input w3-left w3-round w3-margin-bottom" type="text" name="studID" placeholder="Enter Student Number">                                        
                     <input hidden type="text" name="dateout" value="<?php date_default_timezone_set("Asia/Manila"); echo date('F d, Y');?>">
+                    <input hidden type="text" name="outdate" value='<?php date_default_timezone_set("Asia/Manila"); echo date('Y-m-d');?>'>
                     <input hidden type="text" name="outtime" value="<?php date_default_timezone_set("Asia/Manila"); echo date('h:i:s A');?>">
-                    <br><br><br><small class="w3-left">Format: 09-123456</small><br/>
+                    <br><small class="w3-left">Format: 09-123456</small><br><br><br>
+                    <input type="text" class="w3-input w3-right w3-margin-top" id="Osub" name="Osub" style="display:none; max-width:45%" placeholder="Enter Course Code/Subject">
+                    <select required class="w3-select w3-left w3-margin-top" style="max-width:45%;" name="subj" onchange="OtherSub(this.value);">
+                        <option selected disabled>Select Subject
+                        <option value="CMPT123">CMPT123
+                        <option value="CMPT143">CMPT143
+                        <option value="CMPT152">CMPT152
+                        <option value="CMPT153">CMPT153
+                        <option value="CMPT154">CMPT154
+                        <option value="more">Other...
+                    </select>
+                    <br><br><br>
                     <input type="submit" name="timeout" value="Time Out" class="w3-button w3-orange w3-left w3-round w3-margin-top w3-hover-blue w3-hover-shadow">
                 </form>
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-gray">
@@ -360,7 +371,7 @@
             </div>
         </div>
 	</div>
-    <div class="w3-light-gray w3-opacity w3-round-xxlarge">
+<div class="w3-light-gray w3-opacity w3-round-xxlarge">
     <footer class="w3-content w3-padding-32 w3-text-black w3-xlarge w3-margin">
     <!--<i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
@@ -380,7 +391,8 @@
     </h6>
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
   <!-- End footer -->
-  </footer></div>
+    </footer>
+</div>
     <small><button class="w3-content w3-animate-fading w3-btn w3-center w3-bottom w3-text-black">Produced and Developed by <span onclick="w3.toggleShow('#admbtn')">Kreymund</span></button></small>
 </body>
 <script src="js/w3.js"></script>
