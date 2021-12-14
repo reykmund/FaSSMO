@@ -344,6 +344,7 @@
                 <div class="w3-panel"><button class="w3-button w3-yellow w3-hover-red w3-hover-shadow w3-right" onclick="document.getElementById('print').style.display='none'">Back</button></div>
                 <div class="w3-panel">
                     <form class="w3-form" action="print.php" method="POST">
+			<input hidden type="text" name="today" value='<?php date_default_timezone_set("Asia/Manila"); echo date('Y-m-d');?>'>
                         <input type="date" class="w3-input w3-right w3-margin-bottom" name="aldaw" placeholder="Select Date">
                         <input type="text" class="w3-input w3-right w3-margin-bottom" id="Sprint" name="student" style="display:none; max-width: 45%" autocomplete="off" placeholder="Enter Student ID (optional)">
                         <input type="text" class="w3-input w3-right w3-margin-bottom" id="Tprint" name="teacher" style="display:none; max-width: 45%" autocomplete="off" placeholder="Enter Teacher Name">
