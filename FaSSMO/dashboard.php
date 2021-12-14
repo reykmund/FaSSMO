@@ -314,9 +314,10 @@ else {header('Location: index.php');}
                             </tr>
                             <?php
                             include "OnlineAttendance/connect2db.php";
+			    date_default_timezone_set("Asia/Manila");
 			    $today = date('Y-m-d');
                             $sql = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.num ASC";
-			    $output = mysqli_query($conn,$sql);
+                            $output = mysqli_query($conn,$sql);
                             foreach($output as $row){
                                 echo "<tr class='w3-hover-blue w3-hover-shadow'>
                                 <td>".$row['studID']."</td>
