@@ -68,8 +68,10 @@
                     $conn->close();}}}
         else if (isset($_POST['timeout'])) {
             $studID = $_POST['studID'];
+            $subj = strtoupper($_POST['subj']);
             $dateout = $_POST['dateout'];
             $outtime = $_POST['outtime'];
+            $outdate = $_POST['outdate'];
             if(!empty($studID) || !empty($dateout) || !empty($outtime)){
                 include "connect2db.php";
                 if (mysqli_connect_error()) {die('Connect Error('.mysqli_connect_error().')'.mysqli_connect_error());}
@@ -83,14 +85,23 @@
                     $mund = $krey->num_rows;
                     if($mund == 1){
                         $krey->close();
-                        $INSERT = "INSERT INTO timeoutcmpt (studID,dateout,outtime) VALUES(?,?,?)";
-                        $krey = $conn->prepare($INSERT);
-                        $krey->bind_param("sss",$studID,$dateout,$outtime);
+                        $SELECT = "SELECT studID,subj,datein FROM timeincmpt WHERE studID = ? AND subj = ? AND datein = ? LIMIT 1";
+                        $krey = $conn->prepare($SELECT);
+                        $krey->bind_param("sss",$studID,$subj,$outdate);
                         $krey->execute();
-                        echo "<h1 class='w3-white w3-animate-zoom'>Successfully Timed Out</h1>"; #}
-                        $krey->close();
-                        $conn->close();}}}
-                else {echo "Student Number Not Found!"; die();}}
+                        $krey->bind_result($studID,$subj,$outdate);
+                        $krey->store_result();
+                        $mund = $krey->num_rows;
+                        if($mund == 1){
+                            $INSERT = "INSERT INTO timeoutcmpt (studID,dateout,outtime,outdate) VALUES(?,?,?,?)";
+                            $krey = $conn->prepare($INSERT);
+                            $krey->bind_param("ssss",$studID,$dateout,$outtime,$outdate);
+                            $krey->execute();
+                            echo "<h1 class='w3-white w3-animate-zoom'>Successfully Timed Out</h1>"; #}
+                            $krey->close();
+                            $conn->close();}
+                        else{echo "<h1 class='w3-red w3-animate-zoom'>Not Currently Timed In!</h1>";}}}}
+                else {echo "<h1 class='w3-red w3-animate-zoom'>Student Number Not Found!</h1>"; die();}}
         else if (isset($_POST['adminLogin'])) {
             $username = "admin";
             $password = sha1("nimda");
