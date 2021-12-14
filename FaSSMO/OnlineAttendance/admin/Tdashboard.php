@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../css/w3.css">
+	<link rel="icon" href="../img/fassmo_black.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
     <style>
@@ -13,8 +14,8 @@
     <title>Teacher's Dashboard</title>
 </head>
 <body class="w3-responsive w3-content">
-    <a href="http://mmsu.edu.ph"><img class="w3-left w3-margin w3-circle" src="OnlineAttendance/img/mmsu-logo.png" height="40px" width="40px"></a>
-    <a href="http://cit.mmsu.edu.ph"><img class="w3-right w3-margin w3-circle" src="OnlineAttendance/img/cit-logo.png" height="40px" width="45px"></a>
+    <a href="http://mmsu.edu.ph"><img class="w3-left w3-margin w3-circle" src="../img/mmsu-logo.png" height="40px" width="40px"></a>
+    <a href="http://cit.mmsu.edu.ph"><img class="w3-right w3-margin w3-circle" src="../img/cit-logo.png" height="40px" width="45px"></a>
     <h3 class="w3-header w3-center w3-padding w3-serif w3-text-white" style="background-color:#197800; text-shadow:2px 2px 0 #528;"><b>Mariano Marcos State University</b></h3>
 	<div class="w3-panel w3-center w3-round w3-padding w3-margin">
 		<h2 class="w3-food-banana w3-round-xlarge w3-text-black"><i class="material-icons w3-xxlarge">person</i><i class="material-icons w3-xxlarge">dashboard</i><br><b>Teacher's Dashboard</b></h2>
@@ -104,7 +105,7 @@
             mysqli_query($conn,$del);
             echo "<h1 class='w3-green w3-center w3-animate-zoom'>Successfully Deleted!</h1>";}}
         ?>
-        <div class="w3-panel w3-center w3-padding w3-round-large w3-food-banana">
+        <div class="w3-panel w3-center w3-padding w3-round-large">
             <button class="w3-margin w3-round w3-indigo w3-hover-red w3-hover-shadow w3-button" onclick="document.getElementById('Sreg').style.display='block'">
             <i class="material-icons w3-jumbo">assignment_ind</i><br><h6><b>Register a Student</b></h6></button>
             <button class="w3-margin w3-round w3-orange w3-hover-red w3-hover-shadow w3-button" onclick="document.getElementById('infoS').style.display='block'">
