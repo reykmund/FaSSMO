@@ -4,75 +4,80 @@
     if (isset($_POST['Stud_printnow'])) {
         if (!empty($_POST['aldaw'])) {
             $date = $_POST['aldaw'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['student'])) {
             $student = $_POST['student'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' ORDER BY timeincmpt.timein ASC";                
+            $today = $_POST['today'];
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['teacher'])) {
             $teacher = $_POST['teacher'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' ORDER BY timeincmpt.timein ASC";                
+            $today = $_POST['today'];
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['tb'])) {
             $room = $_POST['tb'];
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";                
+            $today = $_POST['today'];
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['ab'])) {
             $room = $_POST['ab'];
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";                
+            $today = $_POST['today'];
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['period'])) {
+            $today = $_POST['today'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['student'])) {
             $date = $_POST['aldaw'];
             $student = $_POST['student'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$student%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$student%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['teacher'])) {
             $date = $_POST['aldaw'];
             $student = $_POST['teacher'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.teacher LIKE '%$teacher%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.teacher LIKE '%$teacher%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['student']) && !empty($_POST['ab'])) {
             $date = $_POST['aldaw'];
             $student = $_POST['student'];
             $room = $_POST['ab'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['student']) && !empty($_POST['tb'])) {
             $date = $_POST['aldaw'];
             $student = $_POST['student'];
             $room = $_POST['tb'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['teacher']) && !empty($_POST['ab'])) {
             $date = $_POST['aldaw'];
             $teacher = $_POST['teacher'];
             $room = $_POST['ab'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['teacher']) && !empty($_POST['tb'])) {
             $date = $_POST['aldaw'];
             $teacher = $_POST['teacher'];
             $room = $_POST['tb'];
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";                
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$date%' AND timeincmpt.studID LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";                
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['student']) && !empty($_POST['ab']) && !empty($_POST['period'])) {
             $date = $_POST['aldaw'];
@@ -80,19 +85,19 @@
             $room = $_POST['ab'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['student']) && !empty($_POST['tb']) && !empty($_POST['period'])) {
@@ -101,19 +106,19 @@
             $room = $_POST['tb'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['teacher']) && !empty($_POST['ab']) && !empty($_POST['period'])) {
@@ -122,19 +127,19 @@
             $room = $_POST['ab'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['aldaw']) && !empty($_POST['teacher']) && !empty($_POST['tb']) && !empty($_POST['period'])) {
@@ -143,141 +148,148 @@
             $room = $_POST['tb'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.datein LIKE '%$date%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['student']) && !empty($_POST['ab']) && !empty($_POST['period'])) {
+            $today = $_POST['today'];
             $student = $_POST['student'];
             $room = $_POST['ab'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['student']) && !empty($_POST['tb']) && !empty($_POST['period'])) {
+            $today = $_POST['today'];
             $student = $_POST['student'];
             $room = $_POST['tb'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.studID LIKE '%$student%' AND timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['teacher']) && !empty($_POST['ab']) && !empty($_POST['period'])) {
+            $today = $_POST['today'];
             $teacher = $_POST['teacher'];
             $room = $_POST['ab'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['teacher']) && !empty($_POST['tb']) && !empty($_POST['period'])) {
+            $today = $_POST['today'];
             $teacher = $_POST['teacher'];
             $room = $_POST['tb'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.teacher LIKE '%$teacher%' AND timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['ab']) && !empty($_POST['period'])) {
+            $today = $_POST['today'];
             $room = $_POST['ab'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else if (!empty($_POST['tb']) && !empty($_POST['period'])) {
+            $today = $_POST['today'];
             $room = $_POST['tb'];
             $period = $_POST['period'];
             if ($period == "S1") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '08%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S2") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '11%AM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "S3") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.timein LIKE '02%PM' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
             else if ($period == "all") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' ORDER BY timeincmpt.timein ASC";
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE '%$room%' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";
             }
             else if ($period == "flh") {
-                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE 'Flexible Learning Hub' ORDER BY timeincmpt.timein ASC";                
+                $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.room LIKE 'Flexible Learning Hub' AND timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.timein DESC";                
             }
         }
         else {
-            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID ORDER BY timeincmpt.num ASC";}
+            $today = $_POST['today'];
+            $query = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.num DESC";}
     }
     class myPDF extends FPDF{
         function header(){
