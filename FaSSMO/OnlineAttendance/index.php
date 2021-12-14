@@ -47,7 +47,8 @@
                     if ($pcnum == "more") {$pcnum = $_POST['numpc'];}
                     if ($subj == "more") {$subj = $_POST['Osub'];}
                     if ($teacher == "others") {$teacher = ucwords($_POST['Oteacher']);}
-                    if ($room == "other") {$room = $_POST['Oroom'];}
+                    if ($room == "acad") {$room = $_POST['ab'];}
+                    else if ($room == "tech") {$room = $_POST['tb'];}
                     $SELECT = "SELECT studID FROM students WHERE studID = ? LIMIT 1";
                     $INSERT = "INSERT INTO timeincmpt (studID,datein,timein,PCNum,subj,teacher,room) VALUES(?,?,?,?,?,?,?)";
                     $krey = $conn->prepare($SELECT);
@@ -231,14 +232,54 @@
                         ?>
                         <option value="others">Others... please specify</option>
                     </select><br><br><br>
-                    <input type="text" class="w3-input w3-right w3-margin-bottom" id="Oroom" name="Oroom" style="display:none; max-width:45%" autocomplete="off" placeholder="Enter Room">
+			<select class="w3-select w3-right w3-margin-bottom" id="techb" name="tb" style="display:none; max-width: 45%" autocomplete="off">
+                        <option selected disabled>Select Room</option>
+                        <option value="TB101">TB101</option>
+                        <option value="TB102">TB102</option>
+                        <option value="TB103">TB103</option>
+                        <option value="TB104">TB104</option>
+                        <option value="TB105">TB105</option>
+                        <option value="TB106">TB106</option>
+                        <option value="TB201">TB201</option>
+                        <option value="TB202">TB202</option>
+                        <option value="TB203">TB203</option>
+                        <option value="TB204">TB204</option>
+                        <option value="TB205">TB205</option>
+                        <option value="TB206">TB206</option>
+                    </select>
+                    <select class="w3-select w3-right w3-margin-bottom" id="acadb" name="ab" style="display:none; max-width: 45%" autocomplete="off">
+                        <option selected disabled>Select Room</option>
+                        <option value="AB101">AB101</option>
+                        <option value="AB102">AB102</option>
+                        <option value="AB103">AB103</option>
+                        <option value="AB104">AB104</option>
+                        <option value="AB105">AB105</option>
+                        <option value="AB106">AB106</option>
+                        <option value="AB107">AB107</option>
+                        <option value="AB108">AB108</option>
+                        <option value="AB201">AB201</option>
+                        <option value="AB202">AB202</option>
+                        <option value="AB203">AB203</option>
+                        <option value="AB204">AB204</option>
+                        <option value="AB205">AB205</option>
+                        <option value="AB206">AB206</option>
+                        <option value="AB207">AB207</option>
+                        <option value="AB208">AB208</option>
+                    </select>
+                    <select required class="w3-select w3-left w3-margin-bottom" name="room" onchange="printSelect(this.value);" style="max-width: 45%;">
+                        <option selected disabled>Select Building</option>
+                        <option value="acad">Academic Building</option>
+                        <option value="tech">Technology Building</option>
+                    </select>
+                    <!--<input type="text" class="w3-input w3-right w3-margin-bottom" id="Oroom" name="Oroom" style="display:none; max-width:45%" autocomplete="off" placeholder="Enter Room">
                     <select required class="w3-select w3-left w3-margin-bottom" name="room" style="max-width:45%;" onchange="OtherRoom(this.value);">
                         <option selected disabled>Select Room Number</option>
                         <option value="TB201">TB201</option>
                         <option value="TB202">TB202</option>
                         <option value="Flexible Learning Hub">Flexible Learning Hub</option>
                         <option value="other">Other</option>
-                    </select><br><br><br>
+                    </select>-->
+<br><br><br>
                     <input type="submit" name="intime" value="Time In" class="w3-button w3-orange w3-left w3-round w3-margin-top w3-hover-blue w3-hover-shadow">
                 </form>
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-gray">
@@ -361,5 +402,12 @@ function OtherRoom(val){
  else  
    element.style.display='none';
 }
+function printSelect(val){
+if(val=='tech')
+    {document.getElementById('techb').style.display='block';
+    document.getElementById('acadb').style.display='none';}
+else if(val=='acad')
+    {document.getElementById('techb').style.display='none';
+    document.getElementById('acadb').style.display='block';}}
 </script>
 </html>
