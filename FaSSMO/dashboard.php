@@ -155,7 +155,7 @@ else {header('Location: index.php');}
             <i class="material-icons w3-jumbo">assignment_ind</i><i class="material-icons w3-jumbo">description</i><br><h6><b>Students' Information</b></h6></button>
             <button class="w3-margin w3-round w3-blue w3-hover-red w3-hover-shadow w3-button" onclick="document.getElementById('infoT').style.display='block'">
             <i class="material-icons w3-jumbo">person</i><i class="material-icons w3-jumbo">description</i><br><h6><b>Faculty Information</b></h6></button><br>
-            <button class="w3-margin w3-round w3-orange w3-hover-red w3-hover-shadow w3-button" onclick="document.getElementById('print').style.display='block'">
+            <button class="w3-margin w3-round w3-orange w3-hover-red w3-hover-shadow w3-button" onclick="document.getElementById('rec').style.display='block'">
             <i class="material-icons w3-jumbo">assignment_ind</i><i class="material-icons w3-jumbo">date_range</i><br><h6><b>Student Attendance Record</b></h6></button>
             <button class="w3-margin w3-round w3-yellow w3-hover-red w3-hover-shadow w3-button" onclick="document.getElementById('fac_rec').style.display='block'">
             <i class="material-icons w3-jumbo">person</i><i class="material-icons w3-jumbo">date_range</i><br><h6><b>Faculty Attendance Record</b></h6></button><br>
@@ -289,16 +289,63 @@ else {header('Location: index.php');}
                     </div>
                 </div>
         </div>
+        <div id="rec" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-top w3-green w3-round-large" style="max-width:3840px">
+                    <div class="w3-center"><br>
+                        <!--<span onclick="document.getElementById('rec').style.display='none'" class="w3-button w3-large w3-hover-red w3-display-topright" title="Close">&times;</span>-->
+                    </div>
+                    <h2 class="w3-orange"><b>Student Attendance</b></h2>
+                    <div class="w3-panel">
+                    <button class="w3-button w3-yellow w3-hover-red w3-hover-shadow w3-right" onclick="document.getElementById('rec').style.display='none'">Back</button>
+                    <button class="w3-button w3-blue w3-hover-red w3-hover-shadow w3-right w3-margin-right" onclick="document.getElementById('rec').style.display='none'; document.getElementById('print').style.display='block'">Print</button></div>
+                    <div class="w3-responsive">
+                        <table class="w3-table w3-round-large w3-margin-bottom">
+                            <tr class="w3-orange">
+                                <th>Student Number</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>PC Number</th>
+                                <th>Teacher</th>
+                                <th>Subject</th>
+                                <th>Room</th>
+                                <th>Time In</th>
+                                <th>Time Out</th>
+                                <th>Date</th>
+                            </tr>
+                            <?php
+                            include "OnlineAttendance/connect2db.php";
+			    date_default_timezone_set("Asia/Manila");
+			    $today = date('Y-m-d');
+                            $sql = "SELECT * FROM timeoutcmpt INNER JOIN students on timeoutcmpt.studID = students.studID INNER JOIN timeincmpt on timeoutcmpt.studID = timeincmpt.studID WHERE timeincmpt.datein LIKE '%$today%' ORDER BY timeincmpt.num ASC";
+                            $output = mysqli_query($conn,$sql);
+                            foreach($output as $row){
+                                echo "<tr class='w3-hover-blue w3-hover-shadow'>
+                                <td>".$row['studID']."</td>
+                                <td>".$row['fname']."</td>
+                                <td>".$row['lname']."</td>
+                                <td>".$row['PCNum']."</td>
+                                <td>".$row['teacher']."</td>
+                                <td>".$row['subj']."</td>
+                                <td>".$row['room']."</td>
+                                <td>".$row['timein']."</td>
+                                <td>".$row['outtime']."</td>
+                                <td>".$row['dateout']."</td></tr>";
+                            }
+                            mysqli_close($conn);
+                            ?>
+                        </table>
+                    </div>
+                </div>
+        </div>
         <div id="print" class="w3-modal">
                 <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-blue w3-round-large" style="max-width:800px">
                     <div class="w3-center"><br>
-                        <span onclick="document.getElementById('print').style.display='none'; document.getElementById('print').style.display='none'" class="w3-button w3-large w3-hover-red w3-display-topright" title="Close">&times;</span>
+                        <span onclick="document.getElementById('print').style.display='none'; document.getElementById('rec').style.display='block'" class="w3-button w3-large w3-hover-red w3-display-topright" title="Close">&times;</span>
                     </div>
-                    <h2 class="w3-yellow"><b>View Attendance Based On</b></h2>
+                    <h2 class="w3-yellow"><b>Print based on</b></h2>
                     <div class="w3-panel"><button class="w3-button w3-yellow w3-hover-red w3-hover-shadow w3-right" onclick="document.getElementById('rec').style.display='block'; document.getElementById('print').style.display='none'">Back</button></div>
                     <div class="w3-panel">
                     <form class="w3-form" action="OnlineAttendance/admin/print.php" method="POST">
-		    <input hidden type="text" name="today" value='<?php date_default_timezone_set("Asia/Manila"); echo date('Y-m-d');?>'>
                     <input type="date" class="w3-input w3-right w3-margin-bottom" name="aldaw" placeholder="Select Date">
                     <input type="text" class="w3-input w3-right w3-margin-bottom" id="Sprint" name="student" style="display:none; max-width: 45%" autocomplete="off" placeholder="Enter Student ID (optional)">
                     <input type="text" class="w3-input w3-right w3-margin-bottom" id="Tprint" name="teacher" style="display:none; max-width: 45%" autocomplete="off" placeholder="Enter Teacher Name">
@@ -356,9 +403,8 @@ else {header('Location: index.php');}
                         <option value="flh">Flexible Learning Hub Only</option>
                         <option value="all">All Records</option>
                     </select>
-                    <input type="submit" class="w3-button w3-margin w3-green w3-round w3-right" name="Stud_printnow" value="View Attendance" onclick="document.getElementById('print').style.display='none'">
-                    <!--<input type="submit" class="w3-button w3-margin w3-blue w3-round w3-right" name="Stud_viewnow" value="View Attendance" onclick="document.getElementById('print').style.display='none'">-->
-		    </form></div>
+                    <input type="submit" class="w3-button w3-margin w3-green w3-round w3-right" name="Stud_printnow" value="Export to PDF" onclick="document.getElementById('print').style.display='none'">
+                    </form></div>
                 </div>
         </div> <!---///--->
         <div id="fac_rec" class="w3-modal">
