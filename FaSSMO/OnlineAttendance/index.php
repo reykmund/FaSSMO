@@ -68,7 +68,7 @@
                     $conn->close();}}}
         else if (isset($_POST['timeout'])) {
             $studID = $_POST['studID'];
-            $subj = strtoupper($_POST['subj']);
+            //$subj = strtoupper($_POST['subj']);
             $dateout = $_POST['dateout'];
             $outtime = $_POST['outtime'];
             $outdate = $_POST['outdate'];
@@ -308,7 +308,7 @@
                     <input hidden type="text" name="dateout" value="<?php date_default_timezone_set("Asia/Manila"); echo date('F d, Y');?>">
                     <input hidden type="text" name="outdate" value='<?php date_default_timezone_set("Asia/Manila"); echo date('Y-m-d');?>'>
                     <input hidden type="text" name="outtime" value="<?php date_default_timezone_set("Asia/Manila"); echo date('h:i:s A');?>">
-                    <br><small class="w3-left">Format: 09-123456</small><br><br><br><--
+                    <br><small class="w3-left">Format: 09-123456</small><br><br><br><!--
                     <select required class="w3-select w3-left w3-margin-top" style="max-width:45%;" name="subj" onchange="OtherSub(this.value);">
                         <option selected disabled>Select Subject
                         <option value="CMPT123">CMPT123
