@@ -309,7 +309,6 @@
                     <input hidden type="text" name="outdate" value='<?php date_default_timezone_set("Asia/Manila"); echo date('Y-m-d');?>'>
                     <input hidden type="text" name="outtime" value="<?php date_default_timezone_set("Asia/Manila"); echo date('h:i:s A');?>">
                     <br><small class="w3-left">Format: 09-123456</small><br><br><br>
-                    <input type="text" class="w3-input w3-right w3-margin-top" id="Osub" name="Osub" style="display:none; max-width:45%" placeholder="Enter Course Code/Subject">
                     <select required class="w3-select w3-left w3-margin-top" style="max-width:45%;" name="subj" onchange="OtherSub(this.value);">
                         <option selected disabled>Select Subject
                         <option value="CMPT123">CMPT123
@@ -319,6 +318,7 @@
                         <option value="CMPT154">CMPT154
                         <option value="more">Other...
                     </select>
+		    <input type="text" class="w3-input w3-right w3-margin-top" id="Osub" name="Osub" style="display:none; max-width:45%" placeholder="Enter Course Code/Subject">
                     <br><br><br>
                     <input type="submit" name="timeout" value="Time Out" class="w3-button w3-orange w3-left w3-round w3-margin-top w3-hover-blue w3-hover-shadow">
                 </form>
