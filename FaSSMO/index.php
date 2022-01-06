@@ -150,7 +150,7 @@
         <button class="w3-button w3-large w3-blue w3-hover-shadow w3-center w3-margin-4 w3-round" onclick="document.getElementById('guro').style.display='block'">
         <i class="material-icons w3-jumbo">account_box</i><br>Faculty</button>
         <a href="OnlineAttendance/index.php" class="w3-button w3-large w3-green w3-hover-shadow w3-center w3-margin-4 w3-round">
-        <i class="material-icons w3-jumbo">person</i><br>Student</a>
+        <i class="material-icons w3-jumbo">person</i><br>Class</a>
         <div id="bisita" class="w3-modal">
             <div class="w3-modal-content w3-card-4 w3-animate-left w3-blue w3-round" style="max-width:600px">
                 <div class="w3-center"><br>
